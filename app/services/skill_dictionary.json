@@ -1,0 +1,8 @@
+{
+  "languages": ["python", "javascript", "typescript", "java", "c#", "go", "ruby", "php", "sql"],
+  "backend": ["fastapi", "django", "flask", "node.js", "express", "spring boot", "rest api", "graphql", "microservices"],
+  "databases": ["sqlite", "postgresql", "mysql", "mongodb", "redis", "oracle", "sql server"],
+  "devops": ["docker", "kubernetes", "aws", "azure", "gcp", "linux", "ci/cd", "terraform"],
+  "testing": ["pytest", "unittest", "jest", "selenium", "playwright", "tdd", "unit testing"],
+  "soft_skills": ["communication", "teamwork", "leadership", "problem solving", "adaptability", "ownership", "collaboration"]
+}

@@ -98,7 +98,29 @@ El reporte debe incluir:
 
 Este reporte no calcula match, no compara automáticamente un perfil y no inventa conclusiones sobre el candidato.
 
-## 9. Validar Resultados Esperados
+## 9. Demo Opcional con Streamlit
+
+Con FastAPI corriendo en `http://127.0.0.1:8000`, abre otra terminal:
+
+```bash
+source .venv/bin/activate
+streamlit run frontend/streamlit_app.py
+```
+
+El frontend permite:
+
+- subir `sample_data/offers_sample.csv`;
+- ver ofertas registradas;
+- consultar estadísticas de habilidades;
+- visualizar y descargar Markdown, CSV y el reporte para ChatGPT.
+
+Si el backend está en otra URL, configura `API_BASE_URL`:
+
+```bash
+API_BASE_URL=http://127.0.0.1:8000 streamlit run frontend/streamlit_app.py
+```
+
+## 10. Validar Resultados Esperados
 
 Después de importar el archivo de ejemplo:
 

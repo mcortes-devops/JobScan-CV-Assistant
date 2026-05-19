@@ -42,6 +42,32 @@ uvicorn app.main:app --reload
 
 La API quedará disponible en `http://127.0.0.1:8000`.
 
+## Frontend Streamlit
+
+En una terminal, ejecuta el backend:
+
+```bash
+source .venv/bin/activate
+uvicorn app.main:app --reload
+```
+
+En otra terminal, ejecuta el frontend:
+
+```bash
+source .venv/bin/activate
+streamlit run frontend/streamlit_app.py
+```
+
+Streamlit normalmente quedará disponible en `http://localhost:8501`.
+
+El frontend consume el backend usando la variable de entorno `API_BASE_URL`. Si no se define, usa `http://127.0.0.1:8000`.
+
+Ejemplo:
+
+```bash
+API_BASE_URL=http://127.0.0.1:8000 streamlit run frontend/streamlit_app.py
+```
+
 ## Demo rápida
 
 El proyecto incluye un CSV de ejemplo en `sample_data/offers_sample.csv` con ofertas ficticias para backend, devops, QA, datos y soporte TI.

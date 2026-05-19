@@ -1,19 +1,36 @@
 # Job Offer Analyzer
 
-Backend en Python para registrar ofertas laborales, analizar sus descripciones y exportar información útil para revisión posterior.
+Proyecto de portafolio en Python para registrar ofertas laborales, extraer habilidades desde sus descripciones y generar reportes exportables que sirvan como insumo para análisis manual de CV, LinkedIn y portafolio.
 
-## Problema
+**Estado del proyecto:** MVP funcional.
 
-Cuando se revisan muchas ofertas laborales, las habilidades solicitadas quedan dispersas en textos largos y difíciles de comparar. Este proyecto centraliza ofertas, detecta habilidades técnicas y blandas con un diccionario configurable, y genera reportes simples para análisis posterior.
+## Problema que Resuelve
 
-## Objetivo
+Cuando se revisan muchas ofertas laborales, las habilidades solicitadas quedan dispersas en textos largos y difíciles de comparar. Este proyecto centraliza ofertas, detecta habilidades técnicas y blandas mediante un diccionario configurable, calcula estadísticas y genera reportes en formatos simples para análisis posterior.
 
-Crear un MVP con FastAPI que permita:
+El sistema está pensado como una herramienta de apoyo: no evalúa automáticamente al candidato ni reemplaza el análisis manual.
 
-- Registrar ofertas laborales.
-- Extraer habilidades desde la descripción de cada oferta.
-- Calcular estadísticas de frecuencia por categoría.
-- Exportar reportes en Markdown y CSV.
+## Características Principales
+
+- API backend con FastAPI.
+- Persistencia inicial con SQLite y SQLAlchemy.
+- Registro, listado, consulta y eliminación de ofertas.
+- Importación masiva desde CSV.
+- Extracción de habilidades con diccionario configurable.
+- Estadísticas de habilidades detectadas.
+- Exportación de reportes en Markdown y CSV.
+- Reporte Markdown orientado a análisis manual con ChatGPT.
+- Frontend mínimo con Streamlit para demo del MVP.
+- Pruebas automatizadas con pytest.
+
+## Lo que Este MVP No Hace
+
+- No hace scraping.
+- No usa IA integrada dentro de la aplicación.
+- No calcula match automático del candidato.
+- No compara perfiles personales contra ofertas.
+- No incluye autenticación.
+- No incluye dashboard avanzado.
 
 ## Stack Tecnológico
 
@@ -22,7 +39,36 @@ Crear un MVP con FastAPI que permita:
 - SQLite
 - SQLAlchemy
 - Pydantic
+- Streamlit
+- httpx
 - pytest
+
+## Arquitectura
+
+```text
+app/
+  main.py
+  database.py
+  models.py
+  schemas.py
+  crud.py
+  routers/
+    offers.py
+    statistics.py
+    exports.py
+  services/
+    skill_extractor.py
+    statistics_service.py
+    export_service.py
+    skill_dictionary.json
+frontend/
+  streamlit_app.py
+tests/
+docs/
+sample_data/
+README.md
+requirements.txt
+```
 
 ## Instalación
 
@@ -32,49 +78,75 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Si tu sistema expone Python 3 como `python`, también puedes usar `python -m venv .venv`.
-
-## Ejecución
+Si tu sistema expone Python 3 como `python`, también puedes usar:
 
 ```bash
-uvicorn app.main:app --reload
+python -m venv .venv
 ```
 
-La API quedará disponible en `http://127.0.0.1:8000`.
-
-## Frontend Streamlit
-
-En una terminal, ejecuta el backend:
+## Ejecutar Backend
 
 ```bash
 source .venv/bin/activate
 uvicorn app.main:app --reload
 ```
 
-En otra terminal, ejecuta el frontend:
+La API queda disponible en:
+
+```text
+http://127.0.0.1:8000
+```
+
+Documentación interactiva:
+
+```text
+http://127.0.0.1:8000/docs
+```
+
+## Ejecutar Frontend Streamlit
+
+En otra terminal:
 
 ```bash
 source .venv/bin/activate
 streamlit run frontend/streamlit_app.py
 ```
 
-Streamlit normalmente quedará disponible en `http://localhost:8501`.
+Streamlit normalmente queda disponible en:
 
-El frontend consume el backend usando la variable de entorno `API_BASE_URL`. Si no se define, usa `http://127.0.0.1:8000`.
+```text
+http://localhost:8501
+```
 
-Ejemplo:
+El frontend consume el backend usando `API_BASE_URL`. Si no se define, usa `http://127.0.0.1:8000`.
 
 ```bash
 API_BASE_URL=http://127.0.0.1:8000 streamlit run frontend/streamlit_app.py
 ```
 
-## Demo rápida
+## Demo Rápida
 
-El proyecto incluye un CSV de ejemplo en `sample_data/offers_sample.csv` con ofertas ficticias para backend, devops, QA, datos y soporte TI.
+El proyecto incluye un CSV de ejemplo:
 
-Consulta la guía reproducible en `docs/demo.md` para levantar la API, importar los datos, revisar estadísticas y exportar reportes.
+```text
+sample_data/offers_sample.csv
+```
 
-## Ejemplos de Uso
+Flujo recomendado:
+
+1. Levanta el backend.
+2. Levanta el frontend Streamlit.
+3. Importa `sample_data/offers_sample.csv`.
+4. Revisa la lista de ofertas y estadísticas.
+5. Exporta el reporte para ChatGPT.
+
+Guía completa:
+
+```text
+docs/demo.md
+```
+
+## Uso por API
 
 Crear una oferta:
 
@@ -93,74 +165,46 @@ curl -X POST http://127.0.0.1:8000/offers \
   }'
 ```
 
-Listar ofertas:
+Importar ofertas desde CSV:
 
 ```bash
-curl http://127.0.0.1:8000/offers
+curl -X POST http://127.0.0.1:8000/offers/import-csv \
+  -F "file=@sample_data/offers_sample.csv"
 ```
 
-Ver estadísticas de habilidades:
+Consultar estadísticas:
 
 ```bash
 curl http://127.0.0.1:8000/statistics/skills
 ```
 
-Exportar Markdown:
+Exportar reportes:
 
 ```bash
 curl http://127.0.0.1:8000/exports/markdown
-```
-
-Exportar CSV:
-
-```bash
 curl http://127.0.0.1:8000/exports/csv
-```
-
-Exportar reporte para análisis manual con ChatGPT:
-
-```bash
 curl http://127.0.0.1:8000/exports/chatgpt-report
 ```
 
-Este reporte incluye distribuciones, ranking de habilidades por cantidad de ofertas y un prompt sugerido para pegar junto con tu CV, LinkedIn y portafolio. No calcula match ni genera conclusiones automáticas sobre el candidato.
+## Formato CSV
 
-Importar ofertas desde CSV:
-
-El archivo debe incluir estas columnas:
+Columnas soportadas:
 
 ```csv
 title,company,location,modality,source,url,target_area,raw_description
-Backend Developer,Acme,Remote,Remote,LinkedIn,https://example.com/job,Backend,"We need Python, FastAPI, PostgreSQL and Docker."
 ```
 
-Los campos obligatorios son `title`, `company` y `raw_description`. Las filas con alguno de esos campos vacío se omiten y se reportan en `errors`.
+Campos obligatorios:
 
-```bash
-curl -X POST http://127.0.0.1:8000/offers/import-csv \
-  -F "file=@offers.csv"
-```
+- `title`
+- `company`
+- `raw_description`
 
-Ejemplo de respuesta:
-
-```json
-{
-  "total_rows": 2,
-  "imported_count": 1,
-  "skipped_count": 1,
-  "errors": [
-    {
-      "row": 3,
-      "field": "raw_description",
-      "message": "Missing required field: raw_description"
-    }
-  ]
-}
-```
+Las filas con campos obligatorios vacíos se omiten y se reportan en la respuesta del importador.
 
 ## Diccionario de Habilidades
 
-El archivo configurable está en:
+El diccionario configurable está en:
 
 ```text
 app/services/skill_dictionary.json
@@ -181,11 +225,23 @@ Categorías iniciales:
 python3 -m pytest
 ```
 
+## Valor como Proyecto de Portafolio
+
+Este proyecto demuestra:
+
+- diseño de una API REST con FastAPI;
+- separación modular entre routers, servicios, CRUD, schemas y modelos;
+- persistencia con SQLAlchemy;
+- procesamiento de CSV;
+- generación de reportes exportables;
+- frontend mínimo consumiendo una API;
+- pruebas automatizadas;
+- enfoque incremental de MVP.
+
 ## Roadmap
 
 - Añadir filtros por área objetivo, modalidad y fuente.
 - Añadir endpoints para consultar habilidades detectadas por oferta.
 - Mejorar normalización de sinónimos y variantes de habilidades.
 - Añadir migraciones con Alembic.
-- Añadir autenticación cuando el MVP esté validado.
-- Añadir scraping e IA en fases posteriores.
+- Evaluar Docker en una fase posterior.

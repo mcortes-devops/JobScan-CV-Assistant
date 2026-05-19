@@ -23,3 +23,16 @@ class JobOfferRead(JobOfferBase):
 
     id: int
     created_at: datetime
+
+
+class CsvImportError(BaseModel):
+    row: int
+    field: str
+    message: str
+
+
+class CsvImportResult(BaseModel):
+    total_rows: int
+    imported_count: int
+    skipped_count: int
+    errors: list[CsvImportError]

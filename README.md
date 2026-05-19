@@ -85,6 +85,39 @@ Exportar CSV:
 curl http://127.0.0.1:8000/exports/csv
 ```
 
+Importar ofertas desde CSV:
+
+El archivo debe incluir estas columnas:
+
+```csv
+title,company,location,modality,source,url,target_area,raw_description
+Backend Developer,Acme,Remote,Remote,LinkedIn,https://example.com/job,Backend,"We need Python, FastAPI, PostgreSQL and Docker."
+```
+
+Los campos obligatorios son `title`, `company` y `raw_description`. Las filas con alguno de esos campos vacío se omiten y se reportan en `errors`.
+
+```bash
+curl -X POST http://127.0.0.1:8000/offers/import-csv \
+  -F "file=@offers.csv"
+```
+
+Ejemplo de respuesta:
+
+```json
+{
+  "total_rows": 2,
+  "imported_count": 1,
+  "skipped_count": 1,
+  "errors": [
+    {
+      "row": 3,
+      "field": "raw_description",
+      "message": "Missing required field: raw_description"
+    }
+  ]
+}
+```
+
 ## Diccionario de Habilidades
 
 El archivo configurable está en:

@@ -12,6 +12,18 @@ def create_offer(db: Session, offer: schemas.JobOfferCreate) -> models.JobOffer:
     return db_offer
 
 
+def create_offers_bulk(
+    db: Session,
+    offers: list[schemas.JobOfferCreate],
+) -> list[models.JobOffer]:
+    db_offers = [models.JobOffer(**offer.model_dump()) for offer in offers]
+    db.add_all(db_offers)
+    db.commit()
+    for db_offer in db_offers:
+        db.refresh(db_offer)
+    return db_offers
+
+
 def get_offer(db: Session, offer_id: int) -> models.JobOffer | None:
     return db.get(models.JobOffer, offer_id)
 

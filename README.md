@@ -32,6 +32,12 @@ El sistema está pensado como una herramienta de apoyo: no evalúa automáticame
 - No incluye autenticación.
 - No incluye dashboard avanzado.
 
+## Nota de Seguridad
+
+Este proyecto es un MVP de portafolio pensado para ejecución local. No debe exponerse públicamente tal cual.
+
+Antes de desplegarlo en internet se deberían agregar autenticación, límites de tamaño para CSV, validación de `content_type`, límite de filas y controles sobre endpoints `POST`/`DELETE`.
+
 ## Stack Tecnológico
 
 - Python 3.11+

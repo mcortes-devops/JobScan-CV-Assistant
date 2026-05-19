@@ -23,9 +23,3 @@ class JobOfferRead(JobOfferBase):
 
     id: int
     created_at: datetime
-
-
-class SkillMatch(BaseModel):
-    category: str
-    skill: str
-    frequency: int

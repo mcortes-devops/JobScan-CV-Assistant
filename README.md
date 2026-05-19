@@ -27,10 +27,12 @@ Crear un MVP con FastAPI que permita:
 ## Instalación
 
 ```bash
-python -m venv .venv
+python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 ```
+
+Si tu sistema expone Python 3 como `python`, también puedes usar `python -m venv .venv`.
 
 ## Ejecución
 
@@ -103,7 +105,7 @@ Categorías iniciales:
 ## Pruebas
 
 ```bash
-pytest
+python3 -m pytest
 ```
 
 ## Roadmap

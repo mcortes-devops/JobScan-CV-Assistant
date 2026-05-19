@@ -1,0 +1,11 @@
+title,company,location,modality,source,url,target_area,raw_description
+Backend Python Developer,Empresa Demo A,Bogota,Remote,Sample,,backend,"Backend role focused on Python, APIs REST, PostgreSQL, SQL, Git and Docker. The team expects clean code, communication and collaboration."
+Backend FastAPI Engineer,Empresa Demo B,Medellin,Hybrid,Sample,,backend,"Build internal APIs REST with Python, FastAPI, PostgreSQL and SQL. Experience with Git, Docker, unit testing and Linux environments is useful."
+DevOps Junior Engineer,Empresa Demo C,Remote,Remote,Sample,,devops,"Support CI/CD pipelines, Docker containers and Linux servers. Basic Bash scripting, Git workflows and troubleshooting skills are required."
+Cloud Operations Assistant,Empresa Demo D,Cali,Hybrid,Sample,,devops,"Assist operations teams with Linux, Docker, Bash scripts, Git repositories and monitoring tasks. SQL knowledge is a plus."
+QA Analyst,Empresa Demo E,Bogota,On-site,Sample,,qa,"Test web applications and APIs REST using Postman. The role includes test case design, SQL validation, Git usage and communication with backend teams."
+QA Automation Trainee,Empresa Demo F,Remote,Remote,Sample,,qa,"Create automated checks for APIs REST with Python, Postman and Git. Familiarity with Docker, Linux and problem solving is valued."
+Data Analyst,Empresa Demo G,Medellin,Hybrid,Sample,,datos,"Analyze operational data using SQL, Excel and Power BI. Work with PostgreSQL datasets and prepare reports for business stakeholders."
+BI Reporting Assistant,Empresa Demo H,Bogota,Remote,Sample,,datos,"Build dashboards with Power BI and Excel. Query data using SQL and PostgreSQL, document findings and collaborate with operations teams."
+IT Support Specialist,Empresa Demo I,Cali,On-site,Sample,,soporte ti,"Provide support for Linux workstations, basic Bash scripts, SQL checks and user troubleshooting. Git and Docker familiarity are desirable."
+Technical Support Analyst,Empresa Demo J,Remote,Remote,Sample,,soporte ti,"Handle technical incidents involving Linux, APIs REST, Postman, SQL and Excel. Strong communication and ownership are expected."

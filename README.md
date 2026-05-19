@@ -42,6 +42,12 @@ uvicorn app.main:app --reload
 
 La API quedará disponible en `http://127.0.0.1:8000`.
 
+## Demo rápida
+
+El proyecto incluye un CSV de ejemplo en `sample_data/offers_sample.csv` con ofertas ficticias para backend, devops, QA, datos y soporte TI.
+
+Consulta la guía reproducible en `docs/demo.md` para levantar la API, importar los datos, revisar estadísticas y exportar reportes.
+
 ## Ejemplos de Uso
 
 Crear una oferta:

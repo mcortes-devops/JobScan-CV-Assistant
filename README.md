@@ -91,6 +91,14 @@ Exportar CSV:
 curl http://127.0.0.1:8000/exports/csv
 ```
 
+Exportar reporte para análisis manual con ChatGPT:
+
+```bash
+curl http://127.0.0.1:8000/exports/chatgpt-report
+```
+
+Este reporte incluye distribuciones, ranking de habilidades por cantidad de ofertas y un prompt sugerido para pegar junto con tu CV, LinkedIn y portafolio. No calcula match ni genera conclusiones automáticas sobre el candidato.
+
 Importar ofertas desde CSV:
 
 El archivo debe incluir estas columnas:

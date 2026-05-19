@@ -3,7 +3,11 @@ from sqlalchemy.orm import Session
 
 from app import crud
 from app.database import get_db
-from app.services.export_service import generate_csv_report, generate_markdown_report
+from app.services.export_service import (
+    generate_chatgpt_report,
+    generate_csv_report,
+    generate_markdown_report,
+)
 
 router = APIRouter(prefix="/exports", tags=["exports"])
 
@@ -25,4 +29,14 @@ def export_csv(db: Session = Depends(get_db)):
         content=report,
         media_type="text/csv",
         headers={"Content-Disposition": "attachment; filename=job_offers.csv"},
+    )
+
+
+@router.get("/chatgpt-report")
+def export_chatgpt_report(db: Session = Depends(get_db)):
+    report = generate_chatgpt_report(crud.get_offers(db))
+    return Response(
+        content=report,
+        media_type="text/markdown",
+        headers={"Content-Disposition": "attachment; filename=chatgpt_job_offer_report.md"},
     )

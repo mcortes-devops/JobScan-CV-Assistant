@@ -81,7 +81,24 @@ curl http://127.0.0.1:8000/exports/csv
 
 La salida debe contener las ofertas registradas con los campos del modelo `JobOffer`.
 
-## 8. Validar Resultados Esperados
+## 8. Exportar Reporte para ChatGPT
+
+```bash
+curl http://127.0.0.1:8000/exports/chatgpt-report
+```
+
+El reporte debe incluir:
+
+- total de ofertas analizadas;
+- distribución por `target_area`;
+- distribución por `modality`;
+- ranking de habilidades detectadas por cantidad de ofertas;
+- tabla resumen de ofertas;
+- prompt sugerido para análisis manual de CV, LinkedIn y portafolio.
+
+Este reporte no calcula match, no compara automáticamente un perfil y no inventa conclusiones sobre el candidato.
+
+## 9. Validar Resultados Esperados
 
 Después de importar el archivo de ejemplo:
 
@@ -89,5 +106,6 @@ Después de importar el archivo de ejemplo:
 - `GET /statistics/skills` debe mostrar frecuencias para tecnologías usadas en el CSV.
 - `GET /exports/markdown` debe generar un reporte en Markdown.
 - `GET /exports/csv` debe generar un CSV con las ofertas almacenadas.
+- `GET /exports/chatgpt-report` debe generar un reporte Markdown orientado a análisis manual con ChatGPT.
 
 Si ya tenías ofertas cargadas previamente, los totales de `/offers` y de los reportes incluirán esos registros además de las 10 ofertas de ejemplo.

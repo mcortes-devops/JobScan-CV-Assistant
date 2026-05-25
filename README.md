@@ -2,13 +2,7 @@
 
 Proyecto de portafolio en Python para registrar ofertas laborales, extraer habilidades desde sus descripciones y generar reportes exportables que sirvan como insumo para análisis manual de CV, LinkedIn y portafolio.
 
-**Estado del proyecto:** MVP funcional.
-
-## Problema que Resuelve
-
-Cuando se revisan muchas ofertas laborales, las habilidades solicitadas quedan dispersas en textos largos y difíciles de comparar. Este proyecto centraliza ofertas, detecta habilidades técnicas y blandas mediante un diccionario configurable, calcula estadísticas y genera reportes en formatos simples para análisis posterior.
-
-El sistema está pensado como una herramienta de apoyo: no evalúa automáticamente al candidato ni reemplaza el análisis manual.
+Resuelve el problema que se presenta cuando se revisan muchas ofertas laborales, las habilidades solicitadas quedan dispersas en textos largos y se vuelven difíciles de comparar. Este proyecto centraliza las ofertas, detecta habilidades técnicas y blandas mediante un diccionario configurable, calcula estadísticas y genera reportes en formatos simples para análisis posterior. El sistema está pensado como una herramienta de apoyo: no evalúa automáticamente al candidato ni reemplaza el análisis manual.
 
 ## Características Principales
 
@@ -23,7 +17,7 @@ El sistema está pensado como una herramienta de apoyo: no evalúa automáticame
 - Frontend mínimo con Streamlit para demo del MVP.
 - Pruebas automatizadas con pytest.
 
-## Lo que Este MVP No Hace
+## Lo que No Hace
 
 - No hace scraping.
 - No usa IA integrada dentro de la aplicación.
@@ -31,12 +25,6 @@ El sistema está pensado como una herramienta de apoyo: no evalúa automáticame
 - No compara perfiles personales contra ofertas.
 - No incluye autenticación.
 - No incluye dashboard avanzado.
-
-## Nota de Seguridad
-
-Este proyecto es un MVP de portafolio pensado para ejecución local. No debe exponerse públicamente tal cual.
-
-Antes de desplegarlo en internet se deberían agregar autenticación, límites de tamaño para CSV, validación de `content_type`, límite de filas y controles sobre endpoints `POST`/`DELETE`.
 
 ## Stack Tecnológico
 
@@ -230,19 +218,6 @@ Categorías iniciales:
 ```bash
 python3 -m pytest
 ```
-
-## Valor como Proyecto de Portafolio
-
-Este proyecto demuestra:
-
-- diseño de una API REST con FastAPI;
-- separación modular entre routers, servicios, CRUD, schemas y modelos;
-- persistencia con SQLAlchemy;
-- procesamiento de CSV;
-- generación de reportes exportables;
-- frontend mínimo consumiendo una API;
-- pruebas automatizadas;
-- enfoque incremental de MVP.
 
 ## Roadmap
 
